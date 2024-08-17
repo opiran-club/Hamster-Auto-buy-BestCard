@@ -1,15 +1,13 @@
 {
-  "name": "hamstr-keys",
+  "name": "hmstr-key",
   "version": "1.0.0",
-  "description": "Key generator for various games",
+  "description": "UUID key generator",
+  "main": "server.js",
   "scripts": {
-    "build": "echo 'No build step required'"
+    "start": "node server.js"
   },
   "dependencies": {
-    "axios": "^1.4.0",
-    "uuid": "^9.0.0"
-  },
-  "engines": {
-    "node": "20.x"
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
   }
 }
