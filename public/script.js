@@ -1,27 +1,44 @@
-document.getElementById("generateKeysButton").addEventListener("click", async function () {
-    try {
-        const response = await fetch("/api/generate-keys");
+document.addEventListener('DOMContentLoaded', function() {
+    const games = [
+        "Riding Extreme 3D",
+        "Chain Cube 2048",
+        "My Clone Army",
+        "Train Miner",
+        "Merge Away",
+        "Twerk Race 3D"
+    ];
 
-        // Check if response is ok and if it's JSON
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+    const gameSelector = document.getElementById('game-selector');
+    const resultDiv = document.getElementById('result');
+    const generateBtn = document.getElementById('generate-btn');
 
-        const text = await response.text();
+    games.forEach((game, index) => {
+        let option = document.createElement('option');
+        option.value = index;
+        option.textContent = game;
+        gameSelector.appendChild(option);
+    });
 
-        // Attempt to parse the JSON
-        let keys;
-        try {
-            keys = JSON.parse(text);
-        } catch (err) {
-            console.error("Failed to parse JSON:", text);
-            throw new Error('Response was not valid JSON');
-        }
-
-        console.log("Generated keys:", keys);
-        document.getElementById("output").innerText = keys.join("\n");
-    } catch (error) {
-        console.error("Error generating keys:", error);
-        document.getElementById("output").innerText = "Error generating keys";
-    }
+    generateBtn.addEventListener('click', function() {
+        const selectedGameIndex = gameSelector.value;
+        fetch('/generate-key', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ gameIndex: selectedGameIndex })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.promoCode) {
+                resultDiv.textContent = `Generated Key: ${data.promoCode}`;
+            } else {
+                resultDiv.textContent = 'There was an error generating the key.';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            resultDiv.textContent = 'There was an error generating the key.';
+        });
+    });
 });
