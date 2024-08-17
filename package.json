@@ -5,7 +5,7 @@
   "main": "api/generate-keys.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "vercel build --output public",
+    "build": "next build",
     "start": "vercel start"
   },
   "dependencies": {
