@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     generateBtn.addEventListener('click', function() {
         const selectedGameIndex = gameSelector.value;
-        fetch('https://zircon-periodic-background.glitch.me/generate-key', {
+        fetch('https://regular-phantom-nerve.glitch.me/generate-key', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
