@@ -1,6 +1,6 @@
 const backendURL = 'https://hmstr-key-opiran-clubs-projects.vercel.app/api/generate-keys';
 
-asyncfunctiongenerateKeys() {
+async function generateKeys() {
     try {
         const response = awaitfetch(backendURL);
         const keys = await response.json();
