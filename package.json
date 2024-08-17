@@ -1,0 +1,1 @@
+{"name":"hamster-keys","version":"1.0.0","description":"A serverless function for generating game keys","main":"api/generate-keys.js","scripts":{"dev":"vercel dev","build":"vercel build","start":"vercel start"},"dependencies":{"axios":"^1.4.0","uuid":"^9.0.0"},"devDependencies":{"vercel":"^28.0.0"},"engines":{"node":"16.x"}}
