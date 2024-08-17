@@ -1,16 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const generateKeyBtn = document.getElementById('generateKeyBtn');
-    const keysOutput = document.getElementById('keysOutput');
+document.getElementById("generateKeysButton").addEventListener("click", async function () {
+    try {
+        const response = await fetch("/api/generate-keys");
 
-    generateKeyBtn.addEventListener('click', async () => {
-        try {
-            const response = await fetch('/api/generate-keys');
-            const keys = await response.json();
-
-            console.log('Generated keys:', keys);
-            keysOutput.innerHTML = keys.map(key => `<p>${key}</p>`).join('');
-        } catch (error) {
-            console.error('Error generating keys:', error);
+        // Check if response is ok and if it's JSON
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    });
+
+        const text = await response.text();
+
+        // Attempt to parse the JSON
+        let keys;
+        try {
+            keys = JSON.parse(text);
+        } catch (err) {
+            console.error("Failed to parse JSON:", text);
+            throw new Error('Response was not valid JSON');
+        }
+
+        console.log("Generated keys:", keys);
+        document.getElementById("output").innerText = keys.join("\n");
+    } catch (error) {
+        console.error("Error generating keys:", error);
+        document.getElementById("output").innerText = "Error generating keys";
+    }
 });
