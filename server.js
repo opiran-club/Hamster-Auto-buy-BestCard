@@ -43,17 +43,55 @@ function generateClientId() {
 }
 
 async function login(appToken, clientId) {
-  // ... Convert the login function to use fetch and return the clientToken
+  try {
+    const response = await fetch('https://api.gamepromo.io/promo/login-client', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ appToken, clientId, clientOrigin: 'deviceid' })
+    });
+    const data = await response.json();
+    return data.clientToken;
+  } catch (error) {
+    console.error('Error during login:', error);
+    return null;
+  }
 }
 
 async function emulateProgress(clientToken, promoId) {
-  // ... Convert the emulate progress function to use fetch and check for 'hasCode'
+  try {
+    const response = await fetch('https://api.gamepromo.io/promo/register-event', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${clientToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ promoId, eventId: uuidv4(), eventOrigin: 'undefined' })
+    });
+    const data = await response.json();
+    return data.hasCode;
+  } catch (error) {
+    console.error('Error during emulate progress:', error);
+    return false;
+  }
 }
 
 async function generateKey(clientToken, promoId) {
-  // ... Convert the generate key function to use fetch and return the 'promoCode'
+  try {
+    const response = await fetch('https://api.gamepromo.io/promo/create-code', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${clientToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ promoId })
+    });
+    const data = await response.json();
+    return data.promoCode;
+  } catch (error) {
+    console.error('Error during generate key:', error);
+    return null;
+  }
 }
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
