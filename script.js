@@ -1,14 +1,20 @@
-const backendURL = 'https://hmstr-iw7i5ijjw-opiran-clubs-projects.vercel.app/api/generate-keys';
-
-async function generateKeys() {
+document.getElementById('generateKeyBtn').addEventListener('click', async () => {
     try {
-        const response = awaitfetch(backendURL);
+        // Send a request to your API to generate the keys
+        const response = await fetch('/api/generate-keys');
+
+        // Parse the JSON response
         const keys = await response.json();
-        const output = document.getElementById('keysOutput');
-        output.value = keys.join('\n');
+
+        // Handle the keys (e.g., display them on the page)
+        console.log('Generated keys:', keys);
+
+        // Assuming you have an element with id 'keysOutput' to display the keys
+        const keysOutput = document.getElementById('keysOutput');
+        keysOutput.innerHTML = keys.map(key => `<p>${key}</p>`).join('');
+
     } catch (error) {
+        // Handle any errors that occur during the request
         console.error('Error generating keys:', error);
     }
-}
-
-document.getElementById('generateKeys').addEventListener('click', generateKeys);
+});
