@@ -7,7 +7,7 @@ const games = [
     { name: "CUBE" }
 ];
 
-functiongenerateRandomSegment(length) {
+function generateRandomSegment(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let result = '';
     for (let i = 0; i < length; i++) {
@@ -16,11 +16,11 @@ functiongenerateRandomSegment(length) {
     return result;
 }
 
-functiongenerateKey(gameName) {
+function generateKey(gameName) {
     return`${gameName}-${generateRandomSegment(3)}-${generateRandomSegment(4)}-${generateRandomSegment(4)}-${generateRandomSegment(3)}`;
 }
 
-functiongenerateKeys() {
+function generateKeys() {
     document.getElementById('keysOutput').innerText = '';
     games.forEach(game => {
         const key = generateKey(game.name);
@@ -28,7 +28,7 @@ functiongenerateKeys() {
     });
 }
 
-functiondisplayKey(key) {
+function displayKey(key) {
     const output = document.getElementById('keysOutput');
     output.innerText += `${key}\n`;
 }
