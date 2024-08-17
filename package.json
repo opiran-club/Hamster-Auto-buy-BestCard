@@ -1,19 +1,13 @@
 {
-  "name": "hamster-keys",
+  "name": "hamstr-keys",
   "version": "1.0.0",
-  "description": "A serverless function for generating game keys",
-  "main": "api/generate-keys.js",
+  "description": "Key generator for various games",
   "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'No build step required'",
-    "start": "vercel start"
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "axios": "^1.4.0",
     "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "vercel": "^28.0.0"
   },
   "engines": {
     "node": "20.x"
