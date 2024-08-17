@@ -15,7 +15,7 @@ export default async (req, res) => {
 
         // Function to generate a key
         
-        constgenerateKey = async (appToken, promoId) => {
+        const generateKey = async (appToken, promoId) => {
             try {
                 const response = await axios.post('https://api.gamepromo.io/promo/create-code', {
                     promoId
