@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from'uuid';
 import axios from'axios';
 
-exportdefaultasync (req, res) => {
+export default async (req, res) => {
     if (req.method === 'GET') {
         // Define the games with appToken and promoId
         const games = [
