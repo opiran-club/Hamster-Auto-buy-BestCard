@@ -1,4 +1,4 @@
-const backendURL = 'https://hmstr-key-opiran-clubs-projects.vercel.app/api/generate-keys';
+const backendURL = 'https://hmstr-iw7i5ijjw-opiran-clubs-projects.vercel.app/api/generate-keys';
 
 async function generateKeys() {
     try {
